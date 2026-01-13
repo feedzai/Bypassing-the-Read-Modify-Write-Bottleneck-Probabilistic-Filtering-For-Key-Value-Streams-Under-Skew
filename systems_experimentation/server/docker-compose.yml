@@ -1,0 +1,17 @@
+services:
+  flask-app:
+    build: .
+    container_name: aggregator_service
+    ports:
+      - "80:8000"
+    environment:
+      - EXPERIMENT_THRESHOLD=0.5
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./data/unfiltered:/app/unfiltered
+      - ./data/filtered:/app/filtered
+      - ./data/fixed_filtering:/app/fixed_filtering
+      - ./data/batched:/app/batched
+      - ./data/full_stream:/app/full_stream
+      - ./data/variance_reduced:/app/variance_reduced
+    restart: always
