@@ -1,0 +1,63 @@
+db_name: features
+table_name: events
+file_path: /mnt/home/augusto.peres/Documents/smooth_operators_datasets/Edge-IIoT-dataset-DOS/iiot_dos_attack.parquet
+
+event_time_unix: event_time_unix
+partition_by: toYear(event_timestamp_UTC)
+
+deduplication_keys:
+  - coalesce(`ip.src`, '0.0.0.0')
+  - coalesce(`ip.dst`, '0.0.0.0')
+  - toFloat64(`frame.time_epoch`)
+
+columns:
+  - target_name: join_key
+    source_name: cityHash64(generateUUIDv4())
+
+  - target_name: src_ip
+    source_name: coalesce(nullIf(`ip.src`, ''), 'MAC_Layer_Traffic')
+
+  - target_name: dst_ip
+    source_name: coalesce(nullIf(`ip.dst`, ''), 'MAC_Layer_Traffic')
+
+  - target_name: event_time_unix
+    source_name: toInt64(assumeNotNull(toFloat64(`frame.time_epoch`) * 1000))
+
+  - target_name: event_timestamp_UTC
+    source_name: toDateTime(event_time_unix / 1000, 'UTC')
+
+  - target_name: is_tcp
+    source_name: toUInt8(isNotNull(nullIf(toString(`tcp.srcport`), '')))
+
+  - target_name: is_udp
+    source_name: toUInt8(isNotNull(nullIf(toString(`udp.srcport`), '')))
+
+  - target_name: tcp_srcport
+    source_name: toInt32(coalesce(toFloat64OrNull(toString(`tcp.srcport`)), -1))
+
+  - target_name: tcp_dstport
+    source_name: toInt32(coalesce(toFloat64OrNull(toString(`tcp.dstport`)), -1))
+
+  - target_name: udp_srcport
+    source_name: toInt32(coalesce(toFloat64OrNull(toString(`udp.srcport`)), -1))
+
+  - target_name: udp_dstport
+    source_name: toInt32(coalesce(toFloat64OrNull(toString(`udp.dstport`)), -1))
+
+  - target_name: tcp_flags
+    source_name: cityHash64(coalesce(nullIf(toString(`tcp.flags`), ''), '-1'))
+
+  - target_name: mqtt_type
+    source_name: toInt32(coalesce(toFloat64OrNull(toString(`mqtt.msgtype`)), -1))
+
+  - target_name: traffic_volume_tcp
+    source_name: toFloat64(coalesce(toFloat64OrNull(toString(`tcp.len`)), -1))
+
+  - target_name: fraud_label
+    source_name: toUInt8(coalesce(toFloat64OrNull(toString(`Attack_label`)), 0))
+
+  - target_name: attack_type
+    source_name: cityHash64(coalesce(nullIf(toString(`Attack_type`), ''), 'Normal'))
+
+  - target_name: raw_datetime
+    source_name: parseDateTime64BestEffort(toString(`datetime`), 9, 'UTC')
