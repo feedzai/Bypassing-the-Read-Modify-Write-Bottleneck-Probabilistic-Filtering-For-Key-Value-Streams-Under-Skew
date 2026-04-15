@@ -1,6 +1,6 @@
 db_name: features
 table_name: events
-file_path: /mnt/home/augusto.peres/Documents/smooth_operators_datasets/Edge-IIoT-dataset-DOS/iiot_dos_attack.parquet
+file_path: PATH to the parquet file with the data.
 
 event_time_unix: event_time_unix
 partition_by: toYear(event_timestamp_UTC)

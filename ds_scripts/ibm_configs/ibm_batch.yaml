@@ -1,0 +1,17 @@
+db_name: features
+table_name: events
+downsampling_rate: 30
+temporal_column: event_time_unix
+label_column: fraud_label
+parquet_save_path: ./ibm_BATCH_{{ entity }}_trial_{{ trial }}_label_smoothing_{{ label_smoothing }}/
+split_timestamps:
+  - [1420070400, 1546300800000] # 01-01-2015 to 01-01-2019
+  # - [1483228800000, 1546300800000] # 01-01-2017 to 01-01-2019
+  - [1546300800000, 1559343600000] # 01-01-2019 to 01-06-2019
+  - [1559343600000, 1580515200000] # 01-06-2019 to 01-02-2020
+tables:
+  - "batch_{{ b_size }}_job_aggregations"
+columns:
+  - "*"
+join_key: join_key
+label_smoothing: {{ label_smoothing }}

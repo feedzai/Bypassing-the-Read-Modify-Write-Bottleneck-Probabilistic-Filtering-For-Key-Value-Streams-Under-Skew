@@ -1,0 +1,44 @@
+optuna:
+  n_startup_trials: 1
+  n_trials: 1
+  seed: 123
+  direction: maximize
+architecture_configs:
+  num_iterations: 500
+  learning_rate: 0.0897561683419116
+  num_leaves: 1002
+  boosting_type: gbdt
+  min_data_in_leaf: 99
+  enable_bundle: True
+  feature_fraction_bynode: 0.7
+  lambda_l1: 1.0771268976941327e-05
+  lambda_l2: 1.60588062147695e-05
+  objective: {{ objective }}
+  metric: custom
+experiment_folder: "./BATCH_IBM_trial_{{ trial }}_objective_{{ objective }}"
+features:
+  - "amount_usd"
+
+  - "time_decayed_count_minute_amount_usd"
+  - "time_decayed_sum_minute_amount_usd"
+  - "time_decayed_average_minute_amount_usd"
+
+  - "time_decayed_count_hour_amount_usd"
+  - "time_decayed_sum_hour_amount_usd"
+  - "time_decayed_average_hour_amount_usd"
+
+  - "time_decayed_count_day_amount_usd"
+  - "time_decayed_sum_day_amount_usd"
+  - "time_decayed_average_day_amount_usd"
+
+  - "time_decayed_count_week_amount_usd"
+  - "time_decayed_sum_week_amount_usd"
+  - "time_decayed_average_week_amount_usd"
+
+  - "time_decayed_count_month_amount_usd"
+  - "time_decayed_sum_month_amount_usd"
+  - "time_decayed_average_month_amount_usd"
+categorical_features: []
+label_column: fraud_label
+max_bin: 255
+early_stopping_rounds: 100

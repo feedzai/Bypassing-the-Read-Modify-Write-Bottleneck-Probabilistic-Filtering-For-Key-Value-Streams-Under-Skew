@@ -1,0 +1,51 @@
+optuna:
+  n_startup_trials: 1
+  n_trials: 1
+  seed: {{ seed }}
+  direction: maximize
+architecture_configs:
+  num_iterations: 500
+  learning_rate: 0.014700433699563111
+  num_leaves: 374
+  boosting_type: gbdt
+  min_data_in_leaf: 37
+  enable_bundle: False
+  feature_fraction_bynode: 0.8
+  lambda_l1: 2.887517996963759e-05
+  lambda_l2: 0.001474028441656194
+  objective: {{ objective }}
+  metric: custom
+experiment_folder: "./WIKIPEDIA_{{ var_reduction }}_half_life_{{ half_life }}_trial_{{ trial }}_threshold_{{ threshold }}_objective_{{ objective }}_{{ type }}"
+features:
+  - "edit_size"
+  - "time_decayed_count_day_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+  - "time_decayed_sum_day_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+  - "time_decayed_average_day_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+
+  - "time_decayed_count_week_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+  - "time_decayed_sum_week_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+  - "time_decayed_average_week_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+
+  - "time_decayed_count_month_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+  - "time_decayed_sum_month_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+  - "time_decayed_average_month_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+
+  - "time_decayed_count_4838400000_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+  - "time_decayed_sum_4838400000_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+  - "time_decayed_average_4838400000_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+  
+  - "time_decayed_count_9676800000_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+  - "time_decayed_sum_9676800000_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+  - "time_decayed_average_9676800000_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+
+  - "time_decayed_count_19353600000_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+  - "time_decayed_sum_19353600000_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+  - "time_decayed_average_19353600000_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+
+  - "time_decayed_count_38707200000_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+  - "time_decayed_sum_38707200000_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+  - "time_decayed_average_38707200000_edit_size_half_life_{{ half_life }}_threshold_{{ threshold }}"
+categorical_features: []
+label_column: fraud_label
+max_bin: 255
+early_stopping_rounds: 100

@@ -1,0 +1,33 @@
+db_name: features
+table_name: events
+downsampling_rate: 30
+temporal_column: event_time_unix
+label_column: fraud_label
+parquet_save_path: ./ibm_FIXED_RATE_FILTERING_{{ entity }}_trial_{{ trial }}_label_smoothing_{{ label_smoothing }}/
+split_timestamps:
+  - [1420070400, 1546300800000] # 01-01-2015 to 01-01-2019
+  # - [1483228800000, 1546300800000] # 01-01-2017 to 01-01-2019
+  - [1546300800000, 1559343600000] # 01-01-2019 to 01-06-2019
+  - [1559343600000, 1580515200000] # 01-06-2019 to 01-02-2020
+tables:
+  - "time_decayed_count_minute_amount_usd_{{ entity }}_at_volume_{{ volume }}_0"
+  - "time_decayed_count_hour_amount_usd_{{ entity }}_at_volume_{{ volume }}_0"
+  - "time_decayed_count_day_amount_usd_{{ entity }}_at_volume_{{ volume }}_0"
+  - "time_decayed_count_week_amount_usd_{{ entity }}_at_volume_{{ volume }}_0"
+  - "time_decayed_count_month_amount_usd_{{ entity }}_at_volume_{{ volume }}_0"
+
+  - "time_decayed_sum_minute_amount_usd_{{ entity }}_at_volume_{{ volume }}_0"
+  - "time_decayed_sum_hour_amount_usd_{{ entity }}_at_volume_{{ volume }}_0"
+  - "time_decayed_sum_day_amount_usd_{{ entity }}_at_volume_{{ volume }}_0"
+  - "time_decayed_sum_week_amount_usd_{{ entity }}_at_volume_{{ volume }}_0"
+  - "time_decayed_sum_month_amount_usd_{{ entity }}_at_volume_{{ volume }}_0"
+
+  - "time_decayed_average_minute_amount_usd_{{ entity }}_at_volume_{{ volume }}_0"
+  - "time_decayed_average_hour_amount_usd_{{ entity }}_at_volume_{{ volume }}_0"
+  - "time_decayed_average_day_amount_usd_{{ entity }}_at_volume_{{ volume }}_0"
+  - "time_decayed_average_week_amount_usd_{{ entity }}_at_volume_{{ volume }}_0"
+  - "time_decayed_average_month_amount_usd_{{ entity }}_at_volume_{{ volume }}_0"
+columns:
+  - "*"
+join_key: join_key
+label_smoothing: {{ label_smoothing }}

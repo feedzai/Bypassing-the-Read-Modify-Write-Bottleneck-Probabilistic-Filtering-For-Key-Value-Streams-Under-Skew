@@ -1,0 +1,16 @@
+db_name: features
+table_name: events
+downsampling_rate: 5
+temporal_column: event_time_unix
+label_column: fraud_label
+parquet_save_path: ./wikipedia_batch_{{ b_size }}_{{ trial }}_label_smoothing_{{ label_smoothing }}/
+split_timestamps:
+  - [1258560107000, 1289570402000]
+  - [1289570402000, 1291132060000]
+  - [1291132060000, 1291334046000]
+tables:
+  - "batch_{{ b_size }}_job_aggregations"
+columns:
+  - "*"
+join_key: join_key
+label_smoothing: {{ label_smoothing }}

@@ -1,0 +1,38 @@
+db_name: features
+table_name: events
+file_path: /shared/research_projects/smoothOps/data/wikipedia_vandalism.parquet
+
+event_time_unix: timestamp
+partition_by: toYear(event_timestamp_UTC)
+
+deduplication_keys:
+  - edit_id
+  - timestamp
+
+columns:
+  - target_name: event_id
+    source_name: assumeNotNull(edit_id)
+
+  - target_name: event_time_unix
+    source_name: assumeNotNull(toUnixTimestamp64Milli(timestamp))
+    
+  - target_name: event_timestamp_UTC
+    source_name: toDateTime(assumeNotNull(timestamp), 'UTC')
+
+  - target_name: article_id
+    source_name: article_id
+
+  - target_name: editor_id
+    source_name: editor_id
+
+  - target_name: edit_size
+    source_name: abs(edit_size)
+
+  - target_name: language
+    source_name: language
+
+  - target_name: fraud_label
+    source_name: is_vandalism
+
+  - target_name: join_key
+    source_name: cityHash64(edit_id, timestamp)

@@ -1,0 +1,39 @@
+db_name: features
+table_name: events
+downsampling_rate: 5
+temporal_column: event_time_unix
+label_column: fraud_label
+parquet_save_path: ./wikipedia_double_stochastic_{{ var_reduction }}_trial_{{ trial }}_hf_{{ half_life }}_threshold_{{ threshold }}_label_smoothing_{{ label_smoothing }}/
+split_timestamps:
+  - [1258560107000, 1289570402000]
+  - [1289570402000, 1291132060000]
+  - [1291132060000, 1291334046000]
+tables:
+  - "double_stochastic{{ var_reduction }}_time_decayed_count_day_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_count_week_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_count_month_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_count_4838400000_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_count_9676800000_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_count_19353600000_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_count_38707200000_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+
+  - "double_stochastic{{ var_reduction }}_time_decayed_sum_day_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_sum_week_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_sum_month_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_sum_4838400000_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_sum_9676800000_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_sum_19353600000_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_sum_38707200000_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+
+  - "double_stochastic{{ var_reduction }}_time_decayed_average_day_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_average_week_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_average_month_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_average_4838400000_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_average_9676800000_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_average_19353600000_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+  - "double_stochastic{{ var_reduction }}_time_decayed_average_38707200000_edit_size_editor_id_hf_{{ half_life }}_threshold_{{ threshold }}_{{ trial }}"
+
+columns:
+  - "*"
+join_key: join_key
+label_smoothing: {{ label_smoothing }}

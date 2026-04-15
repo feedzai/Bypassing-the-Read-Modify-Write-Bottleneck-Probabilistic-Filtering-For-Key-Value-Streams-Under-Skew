@@ -1,0 +1,33 @@
+data:
+  test_split_timestamp: 1637776957608.273
+  temporal_column: event_time_unix
+  label_column: fraud_label
+  db_name: features
+  events_table: events
+  join_key: join_key
+  tables:
+    - "time_decayed_count_minute_traffic_volume_tcp_{{ entity }}_at_volume_{{ volume }}_4"
+    - "time_decayed_count_60000_traffic_volume_tcp_{{ entity }}_at_volume_{{ volume }}_4"
+
+    - "time_decayed_sum_minute_traffic_volume_tcp_{{ entity }}_at_volume_{{ volume }}_4"
+    - "time_decayed_sum_60000_traffic_volume_tcp_{{ entity }}_at_volume_{{ volume }}_4"
+
+    - "time_decayed_average_minute_traffic_volume_tcp_{{ entity }}_at_volume_{{ volume }}_4"
+    - "time_decayed_average_60000_traffic_volume_tcp_{{ entity }}_at_volume_{{ volume }}_4"
+
+experiment_config:
+  forest_args:
+    n_estimators: 100
+    contamination: 0.05
+    n_jobs: -1
+  columns:
+    - traffic_volume_tcp
+    - "time_decayed_count_minute_traffic_volume_tcp_at_volume_{{ volume }}"
+    - "time_decayed_count_60000_traffic_volume_tcp_at_volume_{{ volume }}"
+
+    - "time_decayed_sum_minute_traffic_volume_tcp_at_volume_{{ volume }}"
+    - "time_decayed_sum_60000_traffic_volume_tcp_at_volume_{{ volume }}"
+
+    - "time_decayed_average_minute_traffic_volume_tcp_at_volume_{{ volume }}"
+    - "time_decayed_average_60000_traffic_volume_tcp_at_volume_{{ volume }}"
+  output_folder: iiot_experiments_fixed_rate/threshold_{{ volume }}_trial_{{ trial }}

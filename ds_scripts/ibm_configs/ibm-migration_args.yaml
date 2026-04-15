@@ -1,0 +1,55 @@
+db_name: features
+table_name: events
+file_path: REPLACE WITH PATH TO IBM PARQUET FILE
+
+event_time_unix: event_time_unix
+partition_by: toYear(event_timestamp_UTC)
+
+deduplication_keys:
+  - "*"
+
+columns:
+  - target_name: join_key
+    source_name: cityHash64(generateUUIDv4())
+
+  - target_name: year
+    source_name: coalesce(Year, 2000)
+
+  - target_name: day
+    source_name: coalesce(Day, 1)
+
+  - target_name: month
+    source_name: coalesce(Month, 1)
+
+  - target_name: date_and_time
+    source_name: toDateTime(concat(year, '-', lpad(toString(month), 2, '0'), '-', lpad(toString(day), 2, '0'), ' ', if(length(Time) = 5, concat(Time, ':00'), Time)))
+    
+  - target_name: event_time_unix
+    source_name: assumeNotNull(toUnixTimestamp(date_and_time) * 1000)
+
+  - target_name: event_timestamp_UTC
+    source_name: toDateTime(event_time_unix / 1000, 'UTC')
+
+  - target_name: unix_seconds
+    source_name: event_time_unix / 1000
+
+  - target_name: user
+    source_name: User
+
+  - target_name: card
+    source_name: Card
+
+  - target_name: merchant_name
+    source_name: coalesce(`Merchant Name`, 0)
+
+  - target_name: merchant_city
+    source_name: cityHash64(coalesce(`Merchant City`, ''))
+
+  - target_name: merchant_state
+    source_name: cityHash64(coalesce(`Merchant State`, ''))
+
+  - target_name: amount_usd
+    source_name: toFloat64(REGEXP_REPLACE(coalesce(Amount, '0'), '[^0-9.-]', ''))
+
+  - target_name: fraud_label
+    source_name: coalesce(if(`Is Fraud?` = 'No', 0, 1), 0)
