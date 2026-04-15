@@ -24,7 +24,12 @@ Input/Output and serialization overhead, often improving downstream fraud
 detection accuracy; in our example, we exclude over 90% of events from the
 persistence path while consistently outperforming the baseline.
 
-# Reproducing the results
+# Reproducing system results
 
 1. Follow the instructions for the [server](systems_experimentation/server/README.md)
 2. Follow the instructions for the [injector](systems_experimentation/injector/README.md)
+
+
+# Reproducing data-science results
+
+Follow the instructions [here](ds_scripts/README.md)

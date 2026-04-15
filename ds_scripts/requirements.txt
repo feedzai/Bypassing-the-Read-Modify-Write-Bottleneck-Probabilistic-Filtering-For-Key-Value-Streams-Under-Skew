@@ -1,0 +1,9 @@
+chdb
+jinja2
+PyYAML
+numpy
+pandas
+pyarrow
+optuna
+lightgbm
+scikit-learn

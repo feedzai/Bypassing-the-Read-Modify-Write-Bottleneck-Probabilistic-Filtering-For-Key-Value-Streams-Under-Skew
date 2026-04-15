@@ -1,6 +1,6 @@
 db_name: features
 table_name: events
-file_path: /shared/research_projects/smoothOps/data/wikipedia_vandalism.parquet
+file_path: PATH_TO_PARQUET_HERE
 
 event_time_unix: timestamp
 partition_by: toYear(event_timestamp_UTC)
