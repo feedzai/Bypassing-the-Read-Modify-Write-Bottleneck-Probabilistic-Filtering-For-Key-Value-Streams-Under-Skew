@@ -34,7 +34,7 @@ newgrp docker
 To run the load tests simply use:
 
 ```
-chmod -x test.sh
+chmod +x test.sh
 ./test.sh
 ```
 

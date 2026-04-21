@@ -84,4 +84,37 @@ Once this step is finished you should have three clickhouse databases saved to d
 
 # Simulating filtering
 
+Simulating filtering is a matter of running the script
+`simulate_filter_<dataset_name>.py`. These will apply the filtering strategies
+discussed in the paper to the data that now leaves in clickhouse. 
+
+For the baselines please run `simulate_batch_job_*.py` or
+`simulate_random_filtering_*.py`. All of these scripts receive as command line
+argument `--session`. This should be the path to the clickhouse database that
+contains the proper data.
+
 # Training models
+
+## IIOT
+
+The IIOT model can be trained by running the script
+`iiot_isolation_forest.py`. The configuration file for the experiment must be
+passed as a command line argument. Other script arguments can be consulted by
+using `iiot_isolation_forest.py --help`.
+
+## Other datasets
+
+To train over other datasets please use `lgbm_train.py`. Pass the script the
+data configuration file and the model configuration file. For example
+
+```
+python --db_path /ibm.chdb \
+       --data_config_path ibm_configs/ibm_double_stochastic.yaml \
+       --zaix_config ibm_configs/ibm_filtering_zaix.yaml \
+       --half_life -- \
+       --threshold -- \
+       --trial -- \
+       --label_smoothing -- \
+       --entity merchant_name \
+       --filter_type double_stochastic"
+```
