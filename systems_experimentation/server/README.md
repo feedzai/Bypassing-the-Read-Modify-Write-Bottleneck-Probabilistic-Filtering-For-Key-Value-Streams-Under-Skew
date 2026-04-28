@@ -1,6 +1,12 @@
 # Systems Experimentation: Data Server & Aggregation Module
 
+## Scope
+
+This is the server that must be deployed for all systems experiments with the
+exception of the skew analysis and the paraller execution.
+
 ## 1. Overview
+
 To ensure the reproducibility of the benchmarks reported in the paper, this
 server is containerized to isolate the execution environment. This ensures
 consistent library versions for `rocksdict` and `numpy`, and prevents host-level

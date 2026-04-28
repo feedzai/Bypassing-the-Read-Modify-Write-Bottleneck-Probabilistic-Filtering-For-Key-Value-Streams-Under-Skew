@@ -1,0 +1,15 @@
+services:
+  flask-app:
+    build: .
+    container_name: event_server_sharded
+    ports:
+      # Expose the full block of potential worker ports
+      - "8001-8064:8001-8064"
+    environment:
+      - NUM_WORKERS=<SET THIS HERE>
+      - BASE_PORT=8001
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Map a single data directory to hold all the dynamic shard folders
+      - ./data:/app/data
+    restart: always

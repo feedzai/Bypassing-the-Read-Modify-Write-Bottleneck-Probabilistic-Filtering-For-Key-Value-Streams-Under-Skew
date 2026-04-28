@@ -1,0 +1,6 @@
+pandas
+locust
+matplotlib
+numpy
+scipy
+fastparquet
