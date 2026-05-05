@@ -7,10 +7,11 @@ data-science results in the paper.
 
 The three public datasets can be obtained from the following links
 
-* [IIoT](https://www.kaggle.com/datasets/mohamedamineferrag/edgeiiotset-cyber-security-dataset-of-iot-iiot?resource=download).
+* [IIoT](https://www.kaggle.com/datasets/mohamedamineferrag/edgeiiotset-cyber-security-dataset-of-iot-iiot?resource=download). License: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 * [Wikipedia 2010](https://zenodo.org/records/3341488) and [wikipedia
-  2011](https://zenodo.org/records/3342157).
-* [IBM fraud](https://www.kaggle.com/datasets/ealtman2019/credit-card-transactions/data).
+  2011](https://zenodo.org/records/3342157). License: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+* [IBM
+  fraud](https://www.kaggle.com/datasets/ealtman2019/credit-card-transactions/data). License [Apache License](http://www.apache.org/licenses/)
 
 # Installing requirements
 
