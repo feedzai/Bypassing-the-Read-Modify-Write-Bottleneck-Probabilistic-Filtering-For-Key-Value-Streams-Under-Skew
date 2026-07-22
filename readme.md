@@ -1,4 +1,4 @@
-# Decoupling Inference from State Updates in Low-Latency Feature Engines via Probabilistic Thinning
+# Bypassing the Read-Modify-Write Bottleneck: Probabilistic Filtering For Key-Value Streams Snder Skew
 
 Welcome to the reporducibility instructions for Decoupling Inference from State
 Updates in Low-Latency Feature Engines via Probabilistic Thinning.
