@@ -29,6 +29,10 @@ persistence path while consistently outperforming the baseline.
 1. Follow the instructions for the [server](systems_experimentation/server/README.md)
 2. Follow the instructions for the [injector](systems_experimentation/injector/README.md)
 
+# Reproducing system results ICDE
+
+1. Follow the [instructions](event_filtering_benchmarks/READMe.md)
+
 
 # Reproducing data-science results
 
