@@ -31,7 +31,7 @@ persistence path while consistently outperforming the baseline.
 
 # Reproducing system results ICDE
 
-1. Follow the [instructions](event_filtering_benchmarks/READMe.md)
+1. Follow the [instructions](event_filtering_benchmarks/README.md)
 
 
 # Reproducing data-science results
